@@ -17,7 +17,12 @@ class Player():
         for coin in coins:
             if coin['id'] == 's1':
                 continue
-            self.coins_objects.append(BaseCoin(coin['type'], coin['id'], (coin['x'], coin['y'])))
+            coin_x = coin['x']
+            coin_y = coin['y']
+            if self.kind == '2':
+                coin_x = 1000 - coin['x']
+                coin_y = 1000 - coin['y']
+            self.coins_objects.append(BaseCoin(coin['type'], coin['id'], (coin_x, coin_y)))
         self.__sort()
         
     def process(self, socket):
@@ -29,7 +34,7 @@ class Player():
             if(type(hits) != tuple):
                 continue
             print("Got Hit ===>", hits)
-            time.sleep(15)
+            time.sleep(5)
             socket.emit('player_input', {'position': hits[0], 'force': hits[1], 'angle': hits[2]})
         
     def get_strategies(self):
