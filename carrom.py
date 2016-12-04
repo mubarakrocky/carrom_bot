@@ -7,9 +7,6 @@ from sympy import *
 import math
 from sympy.geometry import *
 
-if __name__ == '__main__':
-    pass
-
 
 class BaseCoin:
     RADIUS = 25
@@ -26,13 +23,11 @@ class BaseCoin:
         
         new_x = self.x + (BaseCoin.RADIUS * math.cos(slope))
         new_y = self.y + (BaseCoin.RADIUS * math.sin(slope))
-        print(slope)
-        print(new_x)
+        print(slope.p/slope.q)
         print(new_y)
         
     def hitable_point(self, line):
         "TODO"
-        
             
     def reset_coord(self, coordinate):
         self.x, self.y = coordinate
