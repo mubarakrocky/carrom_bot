@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-
-from carrom import Pocket,BaseCoin,line_distance_coin
-=======
 from __future__ import division
-from carrom import Pocket
->>>>>>> 7fdf179a52a80e0780a6674013dbb4199cf63c03
+from carrom import Pocket, BaseCoin, line_distance_coin
 import math
 from sympy.geometry import *
 
@@ -127,11 +122,8 @@ def direct_hit(coins):
 				if strikery != 0:
 					###hit it sdfhgjhdjgjdfgkjxfg
 
-
-
-
-
 	return 
+
 def sorted_by_x_position(coins):
     return sorted(coins, key=lambda x: x.x)
-    
+
