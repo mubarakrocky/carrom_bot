@@ -11,7 +11,9 @@ from sympy.geometry import *
 
 
 class BaseCoin:
-    RADIUS = 25
+    RADIUS_COIN=25
+    RADIUS_STRIKER=30
+    RADIUS_TOTAL = 55
     
     def __init__(self, color, identifier, coordinate):
         self.color = color
@@ -22,7 +24,6 @@ class BaseCoin:
     def target_to_pocket(self, pocket):
         line = self.__get_the_line(pocket)
         slope = line.slope
-        
         y_multipier = 1
         if self.y < pocket.y and self.x < pocket.x:
             y_multipier = -1
@@ -30,9 +31,8 @@ class BaseCoin:
         if self.y > pocket.y and self.x < pocket.x:
             y_multipier = -1
         
-        new_x = self.x + (BaseCoin.RADIUS * math.cos(slope.p/slope.q)) * y_multipier
-        new_y = self.y + (BaseCoin.RADIUS * math.sin(slope.p/slope.q)) * y_multipier
-        
+        new_x = self.x + (BaseCoin.TOTAL_RADIUS * math.cos(slope.p/slope.q)) * y_multipier
+        new_y = self.y + (BaseCoin.TOTAL_RADIUS * math.sin(slope.p/slope.q)) * y_multipier
         angle = math.degrees(math.atan(slope.p/slope.q))
 #         print('slope', self.identifier, slope.p/slope.q)
         print("angle", self.identifier, angle)
