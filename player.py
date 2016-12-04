@@ -31,9 +31,10 @@ class Player():
             print("Got Hit ===>", hits)
             time.sleep(15)
             socket.emit('player_input', {'position': hits[0], 'force': hits[1], 'angle': hits[2]})
+            break
         
     def get_strategies(self):
-        return [ initail_strategy ]
+        return [ initail_strategy, direct_hit ]
         
     def __sort(self):
         self.coins_objects = sorted(self.coins_objects, key = self.__sort_operator)
