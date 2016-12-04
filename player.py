@@ -29,7 +29,7 @@ class Player():
             if(type(hits) != tuple):
                 continue
             print("Got Hit ===>", hits)
-#             time.sleep(10)
+            time.sleep(15)
             socket.emit('player_input', {'position': hits[0], 'force': hits[1], 'angle': hits[2]})
         
     def get_strategies(self):

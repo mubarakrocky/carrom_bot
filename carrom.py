@@ -3,9 +3,11 @@ Created on 02-Oct-2016
 
 @author: mubarak
 '''
+from __future__ import division
 from sympy import *
 import math
 from sympy.geometry import *
+
 
 
 class BaseCoin:
@@ -23,8 +25,11 @@ class BaseCoin:
         
         new_x = self.x + (BaseCoin.RADIUS * math.cos(slope))
         new_y = self.y + (BaseCoin.RADIUS * math.sin(slope))
-        print(slope.p/slope.q)
-        print(new_y)
+        
+        angle = math.degrees(math.atan(slope.p/slope.q))
+#         print('slope', self.identifier, slope.p/slope.q)
+        print("angle", self.identifier, angle)
+        return angle, (new_x, new_y)
         
     def hitable_point(self, line):
         "TODO"

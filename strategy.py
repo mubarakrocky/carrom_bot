@@ -1,7 +1,9 @@
 
 from carrom import Pocket
+import math
 
 POCKETS = [Pocket((32.2581, 32.2581)), Pocket((967.7419 , 32.2581)), Pocket((32.2581 , 967.7419)), Pocket((967.7419 , 967.7419))]
+FRONT_POCKETS = [Pocket((967.7419 , 32.2581)), Pocket((967.7419 , 967.7419))]
 
 def initail_strategy(coins):
     coins_size = len(coins)
@@ -11,8 +13,21 @@ def initail_strategy(coins):
     if coins_size < 19:
         return False
     
-    if red.x >= 499.5 and red.x <= 500.5 and red.y >= 499.5 and red.y <= 500.5:
-         return 
+    if (red.x >= 499.5 and red.x <= 500.5) and (red.y >= 499.5 and red.y <= 500.5):
+         return 193.5454, 10000, 45
+     
+    for pocket in FRONT_POCKETS:
+        angle_counter = 0
+        for coin in coins:
+            if coin.color == 'black':
+                continue
+            angle, hitable_point = coin.target_to_pocket(pocket)
+            if math.fabs(angle) > 44 and math.fabs(angle) < 46:
+                angle_counter += 1
+            
+            if angle_counter >= 4:
+                print("We have got the linear position", pocket.y)
+     
     sorted_by_y = sorted_by_y_position(coins)
     
     first_coin = sorted_by_y[0]
