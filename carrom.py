@@ -23,8 +23,15 @@ class BaseCoin:
         line = self.__get_the_line(pocket)
         slope = line.slope
         
-        new_x = self.x + (BaseCoin.RADIUS * math.cos(slope))
-        new_y = self.y + (BaseCoin.RADIUS * math.sin(slope))
+        y_multipier = 1
+        if self.y < pocket.y and self.x < pocket.x:
+            y_multipier = -1
+        
+        if self.y > pocket.y and self.x < pocket.x:
+            y_multipier = -1
+        
+        new_x = self.x + (BaseCoin.RADIUS * math.cos(slope.p/slope.q)) * y_multipier
+        new_y = self.y + (BaseCoin.RADIUS * math.sin(slope.p/slope.q)) * y_multipier
         
         angle = math.degrees(math.atan(slope.p/slope.q))
 #         print('slope', self.identifier, slope.p/slope.q)
