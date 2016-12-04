@@ -46,6 +46,14 @@ class BaseCoin:
         
     def __get_the_line(self, pocket):
         return Line(pocket.center, self.center)
+
+def line_distance_coin(test_coin, pocket, coin):
+    diffx = pocket.x-test_coin.x
+    diffy = pocket.y-test_coin.y
+    denominator = math.sqrt(math.pow(diffy,2)+math.pow(diffx,2))
+    numerator = abs(diffy*coin.x-diffx*coin.y+pocket.x*test_coin.y-pocket.y*test_coin.x)
+    dist = numerator/float(denominator)
+    return dist
     
     
         
